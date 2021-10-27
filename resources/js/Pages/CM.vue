@@ -37,11 +37,11 @@
             >
                 <div>
                     <div>Najbliższe wydarzenie:</div>
-                    <div class="uppercase font-semibold mt-1">{{refEvent.name}}</div>
+                    <div class="font-semibold mt-1">{{refEvent.name}}</div>
                 </div>
                 <div class="flex flex-col items-center">
                     <div class="font-semibold text-lg">{{formatDate(refEvent.date, 'HH:mm')}}</div>
-                    <div>{{formatDate(refEvent.date, 'YYYY-MM-DD')}}</div>
+                    <div>{{formatDate(refEvent.date, 'fancy')}}</div>
                 </div>
             </div>
 
@@ -155,7 +155,13 @@ export default {
 
         const formatDate = (date, format) => {
             moment.locale('pl')
-            return moment(date).format(format)
+            if (format == 'fancy') {
+                if (moment(date).format('YYYY-MM-DD') == moment().format('YYYY-MM-DD')) return 'dzisiaj';
+                else if (moment(date).format('YYYY-MM-DD') == moment().add(1, 'd').format('YYYY-MM-DD')) return 'jutro';
+                else if (moment(date).format('YYYY-MM-DD') <= moment().add(6, 'd').format('YYYY-MM-DD')) return moment(date).format('dddd');
+                else return moment(date).format('YYYY-MM-DD')
+            }
+            else return moment(date).format(format)
         }
 
         const getEvent = () => {
