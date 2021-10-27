@@ -23,3 +23,5 @@ Aby uruchomić stronę, trzeba będzie wpisać kilka komend, oraz zedytować pli
  - `php artisan serve`
  - `php artisan websocket:serve`
 
+
+Pod adresem **localhost:8000/cm** znajduje się widok wyświetlany na monitorze, w naszym mieszkaniu.
