@@ -20,6 +20,7 @@ Aby uruchomić stronę, trzeba będzie wpisać kilka komend, oraz zedytować pli
  - `composer install`
  - `npm run dev`
  - `php artisan migrate:fresh --seed`
+ - `php artisan storage:link`
  - `php artisan serve`
  - `php artisan websocket:serve`
 

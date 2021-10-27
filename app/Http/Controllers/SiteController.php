@@ -134,4 +134,8 @@ class SiteController extends Controller
         $response = file_get_contents("https://api.openweathermap.org/data/2.5/weather?lat=50.079040&lon=19.888770&appid=4bbf6173b25f7d08c5ffa4b142d96c82&units=metric&lang=pl");
         return json_decode($response);
     }
+
+    public function getEvent() {
+        return Event::whereDate('date', '>=', date('Y-m-d H:i:s'))->orderBy('date', 'ASC')->first();
+    }
 }

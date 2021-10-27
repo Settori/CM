@@ -48,6 +48,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::post('/get/image', [SiteController::class, 'getImage'])->name('get.image');
 Route::get('/cm', [SiteController::class, 'cm_view'])->name('cm');
 Route::post('/get/weather', [SiteController::class, 'getWeather'])->name('get.weather');
+Route::post('/get/event', [SiteController::class, 'getEvent'])->name('get.event');
 
 
 

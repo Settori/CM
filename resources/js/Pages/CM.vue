@@ -157,16 +157,22 @@ export default {
             return moment(date).format(format)
         }
 
+        const getEvent = () => {
+            axios.post(route('get.event'), {
+            }).then(response => {
+                props.event = response.data
+            })
+        }
+
         onMounted(() => {
             setInterval(() => {
-                // console.log("nowe zdjoncie")
                 if (timeCounter.value <= 1) {
                     getImage()
                     timeCounter.value = 10;
 
                 }
                 else timeCounter.value -= 1;
-
+                getEvent();
             }, 1000);
 
             setInterval(() => {
