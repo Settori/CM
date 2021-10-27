@@ -33,15 +33,15 @@
 
             <div
             class="mt-4 flex justify-between items-center bg-gray-200 rounded-md text-gray-900 px-4 py-2 border-b-4 border-gray-900"
-            v-if="event"
+            v-if="refEvent"
             >
                 <div>
                     <div>Najbliższe wydarzenie:</div>
-                    <div class="uppercase font-semibold mt-1">{{event.name}}</div>
+                    <div class="uppercase font-semibold mt-1">{{refEvent.name}}</div>
                 </div>
                 <div class="flex flex-col items-center">
-                    <div class="font-semibold text-lg">{{formatDate(event.date, 'HH:mm')}}</div>
-                    <div>{{formatDate(event.date, 'YYYY-MM-DD')}}</div>
+                    <div class="font-semibold text-lg">{{formatDate(refEvent.date, 'HH:mm')}}</div>
+                    <div>{{formatDate(refEvent.date, 'YYYY-MM-DD')}}</div>
                 </div>
             </div>
 
@@ -117,6 +117,7 @@ export default {
         const timeCounter = ref(10);
         const weather = ref(null);
         const temp = ref(null);
+        const refEvent = ref(props.event);
         const icon = ref(null);
         const feels_like = ref(null);
         const imageRef = ref(props.image);
@@ -160,7 +161,7 @@ export default {
         const getEvent = () => {
             axios.post(route('get.event'), {
             }).then(response => {
-                props.event = response.data
+                refEvent.value = response.data
             })
         }
 
@@ -172,12 +173,17 @@ export default {
 
                 }
                 else timeCounter.value -= 1;
-                getEvent();
             }, 1000);
 
+            // Pogoda
             setInterval(() => {
                 getWeather();
             }, 1000*120);
+
+            // Wydarzenia
+            setInterval(() => {
+                getEvent();
+            }, 1000);
 
             getWeather();
             setInterval(() => {getDate()}, 1000);
@@ -208,6 +214,7 @@ export default {
             timeCounter,
             feels_like,
             icon,
+            refEvent,
             time
         }
     }

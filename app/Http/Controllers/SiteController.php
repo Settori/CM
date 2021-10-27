@@ -136,6 +136,7 @@ class SiteController extends Controller
     }
 
     public function getEvent() {
-        return Event::whereDate('date', '>=', date('Y-m-d H:i:s'))->orderBy('date', 'ASC')->first();
+        date_default_timezone_set('Europe/Warsaw');
+        return Event::whereRaw('date >= NOW()')->orderBy('date', 'ASC')->first();
     }
 }
