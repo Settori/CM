@@ -19,8 +19,8 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Szymuś',
             'avatar' => true,
-            'email' => 'szymon.walosik@webfalcon.pl',
-            'password' => Hash::make('WebF@lcon36'),
+            'email' => 'szymon@walosik.pl',
+            'password' => Hash::make('123456'),
         ]);
 
         User::create([

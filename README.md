@@ -25,3 +25,4 @@ Aby uruchomić stronę, trzeba będzie wpisać kilka komend, oraz zedytować pli
 
 
 Pod adresem **localhost:8000/cm** znajduje się widok wyświetlany na monitorze, w naszym mieszkaniu.
+Dane do logowania znajdują się w seederze, plik: **database/seeders/UserSeeder.php**.
